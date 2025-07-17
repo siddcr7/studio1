@@ -2,7 +2,7 @@
 "use client";
 
 import * as React from "react";
-import { Pie, PieChart, Legend } from "recharts";
+import { Pie, PieChart } from "recharts";
 
 import {
   ChartContainer,
@@ -73,7 +73,7 @@ export function DefectFrequencyChart({ timeframe = 'monthly' }: { timeframe?: Ti
   return (
     <ChartContainer
       config={chartConfig}
-      className="mx-auto aspect-square max-h-[300px]"
+      className="mx-auto aspect-square max-h-[350px]"
     >
       <PieChart>
         <ChartTooltip
@@ -86,14 +86,17 @@ export function DefectFrequencyChart({ timeframe = 'monthly' }: { timeframe?: Ti
           nameKey="reason"
           innerRadius={60}
           strokeWidth={5}
+          cy={120}
         >
         </Pie>
         <ChartLegend
           content={<ChartLegendContent nameKey="reason" />}
-          className="-translate-y-[2rem] flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center"
+          className="flex-wrap gap-2 data-[align=center]:justify-center"
         />
       </PieChart>
-        <div className="absolute top-1/2 left-1/2 -translate-y-[calc(50%_+_1rem)] -translate-x-1/2 flex flex-col items-center justify-center pointer-events-none" aria-hidden="true">
+        <div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[calc(50%_-_25px)] flex flex-col items-center justify-center pointer-events-none" 
+          aria-hidden="true">
             <span className="text-3xl font-bold tracking-tighter">
                 {totalDefects}
             </span>
