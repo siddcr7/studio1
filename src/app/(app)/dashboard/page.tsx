@@ -6,7 +6,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  DollarSign,
   Package,
   Factory,
   CheckCircle,
@@ -16,12 +15,6 @@ import { DefectFrequencyChart } from "@/components/defect-chart";
 import { Badge } from "@/components/ui/badge";
 
 const kpiData = [
-  {
-    title: "Total Revenue",
-    value: "₹4,52,31,890",
-    change: "+20.1%",
-    icon: DollarSign,
-  },
   {
     title: "Units Produced",
     value: "+23,500",
@@ -53,7 +46,7 @@ const recentActivities = [
 export default function DashboardPage() {
   return (
     <div className="grid gap-6">
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
         {kpiData.map((kpi, index) => (
           <Card key={index}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
