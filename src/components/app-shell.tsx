@@ -7,12 +7,11 @@ import {
   Factory,
   FileText,
   LayoutDashboard,
-  PanelLeft,
   Settings,
   ShieldCheck,
   Sparkles,
   Truck,
-  User,
+  UserCircle,
 } from "lucide-react";
 
 import {
@@ -68,13 +67,13 @@ function Logo() {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="h-8 w-8 text-primary"
+        className="h-8 w-8 text-sidebar-primary"
       >
         <path d="M9 3v2.4L6.5 8H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2.5l2.5 2.6V21" />
         <path d="M9 3h6v18H9" />
         <path d="M15 21v-2.6L17.5 16H20a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2.5L15 5.4V3" />
       </svg>
-      <h1 className="text-xl font-bold text-foreground">TextileFlow</h1>
+      <h1 className="text-xl font-bold text-sidebar-foreground">TextileFlow</h1>
     </div>
   );
 }
@@ -88,7 +87,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <Sidebar
         variant="sidebar"
         collapsible="icon"
-        className="border-r"
+        className="border-r sidebar-gradient"
         defaultOpen
       >
         <SidebarHeader className="h-16 p-4">
@@ -104,9 +103,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   asChild
                   isActive={pathname === item.href}
                   tooltip={item.label}
+                  className="justify-start"
+                  size="lg"
                 >
                   <Link href={item.href}>
-                    <item.icon />
+                    <item.icon className="group-data-[collapsible=icon]:mx-auto"/>
                     <span>{item.label}</span>
                   </Link>
                 </SidebarMenuButton>
@@ -117,8 +118,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <SidebarFooter className="p-4">
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Settings">
-                <Settings />
+              <SidebarMenuButton tooltip="Settings" className="justify-start" size="lg">
+                <Settings className="group-data-[collapsible=icon]:mx-auto"/>
                 <span>Settings</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -134,7 +135,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="rounded-full">
-                  <User className="h-5 w-5" />
+                  <UserCircle className="h-6 w-6" />
                   <span className="sr-only">Toggle user menu</span>
                 </Button>
               </DropdownMenuTrigger>
