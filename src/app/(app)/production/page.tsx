@@ -1,3 +1,7 @@
+
+"use client";
+
+import { useState } from 'react';
 import {
   Card,
   CardContent,
@@ -69,6 +73,7 @@ const JobCard = ({ job, type }: { job: any; type: string }) => (
 );
 
 export default function ProductionPage() {
+    const [timeframe, setTimeframe] = useState<'daily' | 'weekly' | 'monthly'>('monthly');
   return (
     <div className="space-y-6">
         <div className="flex items-center justify-between">
@@ -78,6 +83,11 @@ export default function ProductionPage() {
                 Create New Job
             </Button>
         </div>
+        <div className="flex items-center justify-start gap-2">
+            <Button variant={timeframe === 'daily' ? 'default' : 'outline'} onClick={() => setTimeframe('daily')}>Daily</Button>
+            <Button variant={timeframe === 'weekly' ? 'default' : 'outline'} onClick={() => setTimeframe('weekly')}>Weekly</Button>
+            <Button variant={timeframe === 'monthly' ? 'default' : 'outline'} onClick={() => setTimeframe('monthly')}>Monthly</Button>
+       </div>
         <Tabs defaultValue="weaving" className="w-full">
         <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="spinning">Spinning</TabsTrigger>

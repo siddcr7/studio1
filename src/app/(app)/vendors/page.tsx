@@ -1,3 +1,7 @@
+
+"use client";
+
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -33,7 +37,15 @@ const vendors = [
 ];
 
 export default function VendorsPage() {
+    const [timeframe, setTimeframe] = useState<'daily' | 'weekly' | 'monthly'>('monthly');
+
   return (
+    <div className="space-y-6">
+        <div className="flex items-center justify-start gap-2">
+            <Button variant={timeframe === 'daily' ? 'default' : 'outline'} onClick={() => setTimeframe('daily')}>Daily</Button>
+            <Button variant={timeframe === 'weekly' ? 'default' : 'outline'} onClick={() => setTimeframe('weekly')}>Weekly</Button>
+            <Button variant={timeframe === 'monthly' ? 'default' : 'outline'} onClick={() => setTimeframe('monthly')}>Monthly</Button>
+       </div>
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <div>
@@ -74,9 +86,9 @@ export default function VendorsPage() {
                 </TableCell>
                 <TableCell>{vendor.lastOrder}</TableCell>
                 <TableCell>
-                  <Badge 
+                  <Badge
                     variant={
-                        vendor.status === 'Active' ? 'default' : 
+                        vendor.status === 'Active' ? 'default' :
                         vendor.status === 'On Hold' ? 'secondary' : 'outline'
                     }
                     className={
@@ -104,5 +116,6 @@ export default function VendorsPage() {
         </Table>
       </CardContent>
     </Card>
+    </div>
   );
 }
