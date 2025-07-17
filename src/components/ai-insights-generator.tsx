@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Lightbulb, AlertTriangle, ListChecks, Loader2 } from "lucide-react";
+import { Lightbulb, AlertTriangle, ListChecks, Loader2, Sparkles } from "lucide-react";
 
 const sampleData = `
 Raw Materials:
