@@ -51,7 +51,7 @@ const recentActivities = [
     { id: 2, type: "PRODUCTION", description: "Job #JB789 (Weaving) started for Order #ORD112.", time: "3 hours ago", icon: Factory, color: "bg-purple-100 text-purple-600" },
     { id: 3, type: "QC", description: "3 units rejected from Batch #B456 for 'dyeing defect'.", time: "5 hours ago", icon: AlertTriangle, color: "bg-red-100 text-red-600" },
     { id: 4, type: "VENDOR", description: "New PO #PO-2024-088 sent to ThreadHouse Inc.", time: "8 hours ago", icon: Send, color: "bg-green-100 text-green-600" },
-    { id: 5, type: "COMPLIANCE", description: "GOTS audit scheduled for 2024-08-15.", time: "1 day ago", icon: CalendarCheck, color: "bg-yellow-100 text-yellow-600" },
+    { id: 5, "type": "COMPLIANCE", "description": "GOTS audit scheduled for 2024-08-15.", "time": "1 day ago", "icon": CalendarCheck, color: "bg-yellow-100 text-yellow-600" },
 ];
 
 const TimeframeButtons = ({ timeframe, setTimeframe, size = "sm" }: { timeframe: Timeframe, setTimeframe: (tf: Timeframe) => void, size?: "sm" | "default" }) => {
@@ -115,7 +115,7 @@ export default function DashboardPage() {
                 </div>
             </div>
           </CardHeader>
-          <CardContent className="pl-2 h-[350px] w-full">
+          <CardContent className="pl-2 pt-4">
             <DefectFrequencyChart timeframe={defectChartTimeframe} />
           </CardContent>
         </Card>
