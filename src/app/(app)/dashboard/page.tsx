@@ -1,3 +1,7 @@
+
+"use client";
+
+import { useState } from 'react';
 import {
   Card,
   CardContent,
@@ -13,27 +17,25 @@ import {
 } from "lucide-react";
 import { DefectFrequencyChart } from "@/components/defect-chart";
 import { Badge } from "@/components/ui/badge";
+import { Button } from '@/components/ui/button';
 
-const kpiData = [
-  {
-    title: "Units Produced",
-    value: "+23,500",
-    change: "+18.1%",
-    icon: Package,
-  },
-  {
-    title: "Production Lines",
-    value: "5 Active",
-    change: "1 Idle",
-    icon: Factory,
-  },
-  {
-    title: "Quality Pass Rate",
-    value: "98.2%",
-    change: "+1.9%",
-    icon: CheckCircle,
-  },
-];
+const kpiData = {
+  daily: [
+    { title: "Units Produced", value: "+1,200", change: "+5.2%", icon: Package },
+    { title: "Production Lines", value: "5 Active", change: "1 Idle", icon: Factory },
+    { title: "Quality Pass Rate", value: "98.5%", change: "+0.2%", icon: CheckCircle },
+  ],
+  weekly: [
+    { title: "Units Produced", value: "+8,500", change: "+12.5%", icon: Package },
+    { title: "Production Lines", value: "5 Active", change: "1 Idle", icon: Factory },
+    { title: "Quality Pass Rate", value: "98.3%", change: "+0.8%", icon: CheckCircle },
+  ],
+  monthly: [
+    { title: "Units Produced", value: "+23,500", change: "+18.1%", icon: Package },
+    { title: "Production Lines", value: "5 Active", change: "1 Idle", icon: Factory },
+    { title: "Quality Pass Rate", value: "98.2%", change: "+1.9%", icon: CheckCircle },
+  ]
+};
 
 const recentActivities = [
     { id: 1, type: "INVENTORY", description: "Received 500kg of Cotton Yarn from Supreme Textiles.", time: "2 hours ago" },
@@ -44,10 +46,19 @@ const recentActivities = [
 ];
 
 export default function DashboardPage() {
+  const [timeframe, setTimeframe] = useState<'daily' | 'weekly' | 'monthly'>('monthly');
+  const currentKpis = kpiData[timeframe];
+
   return (
-    <div className="grid gap-6">
+    <div className="space-y-6">
+       <div className="flex items-center justify-start gap-2">
+            <Button variant={timeframe === 'daily' ? 'default' : 'outline'} onClick={() => setTimeframe('daily')}>Daily</Button>
+            <Button variant={timeframe === 'weekly' ? 'default' : 'outline'} onClick={() => setTimeframe('weekly')}>Weekly</Button>
+            <Button variant={timeframe === 'monthly' ? 'default' : 'outline'} onClick={() => setTimeframe('monthly')}>Monthly</Button>
+       </div>
+
       <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
-        {kpiData.map((kpi, index) => (
+        {currentKpis.map((kpi, index) => (
           <Card key={index}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">{kpi.title}</CardTitle>
@@ -57,7 +68,7 @@ export default function DashboardPage() {
               <div className="text-2xl font-bold">{kpi.value}</div>
               <p className="text-xs text-muted-foreground flex items-center">
                 <ArrowUp className="h-3 w-3 mr-1 text-green-500" />
-                {kpi.change} from last month
+                {kpi.change} from last {timeframe.slice(0, -2)}
               </p>
             </CardContent>
           </Card>
