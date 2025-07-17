@@ -14,7 +14,6 @@ import {
   Factory,
   CheckCircle,
   ArrowUp,
-  FileText,
   Warehouse,
   AlertTriangle,
   Send,
@@ -92,15 +91,6 @@ const KpiCard = ({ title, data }: { title: keyof typeof kpiData, data: typeof kp
 export default function DashboardPage() {
   const [defectChartTimeframe, setDefectChartTimeframe] = useState<Timeframe>('monthly');
 
-  const getActivityIcon = (type: string) => {
-    const activity = recentActivities.find(a => a.type === type);
-    if(activity) {
-      const Icon = activity.icon;
-      return <Icon className="h-5 w-5 text-muted-foreground" />;
-    }
-    return <FileText className="h-5 w-5 text-muted-foreground" />;
-  }
-
   return (
     <div className="space-y-6">
       <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
@@ -137,17 +127,20 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
-              {recentActivities.map(activity => (
-                <div key={activity.id} className="flex items-start gap-4">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted">
-                    {getActivityIcon(activity.type)}
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium">{activity.description}</p>
-                    <p className="text-xs text-muted-foreground">{activity.time}</p>
-                  </div>
-                </div>
-              ))}
+              {recentActivities.map(activity => {
+                const Icon = activity.icon;
+                return (
+                    <div key={activity.id} className="flex items-start gap-4">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted">
+                            <Icon className="h-5 w-5 text-muted-foreground" />
+                        </div>
+                        <div className="flex-1">
+                            <p className="text-sm font-medium">{activity.description}</p>
+                            <p className="text-xs text-muted-foreground">{activity.time}</p>
+                        </div>
+                    </div>
+                );
+              })}
             </div>
           </CardContent>
         </Card>
