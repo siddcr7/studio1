@@ -21,9 +21,7 @@ import {
   CalendarCheck,
 } from "lucide-react";
 import { DefectFrequencyChart } from "@/components/defect-chart";
-import { Badge } from "@/components/ui/badge";
 import { Button } from '@/components/ui/button';
-import type { LucideIcon } from 'lucide-react';
 
 type Timeframe = 'daily' | 'weekly' | 'monthly';
 
