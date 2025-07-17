@@ -73,7 +73,7 @@ export function DefectFrequencyChart({ timeframe = 'monthly' }: { timeframe?: Ti
   return (
     <ChartContainer
       config={chartConfig}
-      className="mx-auto aspect-square h-full"
+      className="mx-auto aspect-square max-h-[400px]"
     >
       <PieChart>
         <ChartTooltip
@@ -91,10 +91,10 @@ export function DefectFrequencyChart({ timeframe = 'monthly' }: { timeframe?: Ti
         </Pie>
         <ChartLegend
           content={<ChartLegendContent nameKey="reason" />}
-          className="-translate-y-2 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center"
+          className="flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center"
         />
       </PieChart>
-        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none" aria-hidden="true">
+        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col items-center justify-center pointer-events-none" aria-hidden="true" style={{top: '40%'}}>
             <span className="text-3xl font-bold tracking-tighter">
                 {totalDefects}
             </span>
